@@ -1,0 +1,12 @@
+.homeTitulo {
+    background: #003585;
+    background: url("../img/backgroundHome.svg"),
+        linear-gradient(45deg, #003585 20%, #0061d2 100%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.homeFooter {
+    background: linear-gradient(to right, #003585 20%, #0061d2 100%);
+}

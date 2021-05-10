@@ -1,0 +1,19 @@
+.footer {
+    background: #003585;
+    background: linear-gradient(45deg, #003585 20%, #0061d2 100%);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.footer-copyright {
+    background-color: rgba(0, 0, 0, 0.3);
+    background-blend-mode: multiply;
+}
+.cardTitulo {
+    background: #003585;
+    background: url("../img/backgroundHome.svg"),
+        linear-gradient(to bottom, #003585 20%, #0061d2 100%);
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-size: cover;
+}

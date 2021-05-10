@@ -1,0 +1,27 @@
+.c-title-text {
+    color: rgba(255, 255, 255, 0.8);
+}
+.c-bg-head-ep {
+    background-color: #00b894;
+}
+.c-bg-head-tc {
+    background-color: #e17055;
+}
+.c-bg-head-tv {
+    background-color: #487eb0;
+}
+.c-bg-head-et {
+    background-color: #5758bb;
+}
+.c-bg-body-ep {
+    background-color: #e7f8f5;
+}
+.c-bg-headbody-tc {
+    background-color: #fcf0ed;
+}
+.c-bg-body-tv {
+    background-color: #ecf2f7;
+}
+.c-bg-body-et {
+    background-color: #eeeef8;
+}
