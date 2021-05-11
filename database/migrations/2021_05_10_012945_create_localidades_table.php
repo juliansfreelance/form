@@ -17,6 +17,7 @@ class CreateLocalidadesTable extends Migration
             $table->tinyIncrements('id_localidad');
             $table->string('nombre_localidad', 40);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

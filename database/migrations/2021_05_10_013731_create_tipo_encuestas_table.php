@@ -17,6 +17,7 @@ class CreateTipoEncuestasTable extends Migration
             $table->tinyIncrements('id_tipo_encuesta');
             $table->string('nombre_tipo_encuesta', 25);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

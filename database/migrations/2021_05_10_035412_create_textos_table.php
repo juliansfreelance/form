@@ -27,6 +27,7 @@ class CreateTextosTable extends Migration
 
             $table->year('year_edicion');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

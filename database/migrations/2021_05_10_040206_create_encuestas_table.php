@@ -45,6 +45,7 @@ class CreateEncuestasTable extends Migration
                 ->onUpdate('cascade');
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

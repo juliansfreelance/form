@@ -28,6 +28,7 @@ class CreateRecursoTextosTable extends Migration
                 ->on('textos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->engine = 'InnoDB';
         });
     }
 

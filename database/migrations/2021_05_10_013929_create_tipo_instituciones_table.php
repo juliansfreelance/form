@@ -17,6 +17,7 @@ class CreateTipoInstitucionesTable extends Migration
             $table->tinyIncrements('id_tipo_institucion');
             $table->string('nombre_tipo_institucion', 25);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

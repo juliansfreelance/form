@@ -37,6 +37,7 @@ class CreateEncuestaRecursosTable extends Migration
                 ->on('tipo_recursos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->engine = 'InnoDB';
         });
     }
 

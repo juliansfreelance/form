@@ -17,6 +17,7 @@ class CreateEditorialesTable extends Migration
             $table->tinyIncrements('id_editorial');
             $table->string('nombre_editorial', 60);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

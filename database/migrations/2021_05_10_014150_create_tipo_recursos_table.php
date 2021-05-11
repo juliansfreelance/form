@@ -17,6 +17,7 @@ class CreateTipoRecursosTable extends Migration
             $table->tinyIncrements('id_tipo_recurso');
             $table->string('nombre_tipo_recurso', 40);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

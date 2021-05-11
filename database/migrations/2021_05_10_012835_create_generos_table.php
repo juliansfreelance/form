@@ -17,6 +17,7 @@ class CreateGenerosTable extends Migration
             $table->tinyIncrements('id_genero');
             $table->string('nombre_genero', 20);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

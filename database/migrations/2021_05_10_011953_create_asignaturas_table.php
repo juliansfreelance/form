@@ -17,6 +17,7 @@ class CreateAsignaturasTable extends Migration
             $table->tinyIncrements('id_asignatura');
             $table->string('nombre_asignatura', 60);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

@@ -29,6 +29,7 @@ class CreateDocentesTable extends Migration
             $table->string('correo_docente', 160)->nullable();
             $table->string('telefono_docente', 10)->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

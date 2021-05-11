@@ -25,6 +25,7 @@ class CreateInstitucionesTable extends Migration
 
             $table->string('nombre_institucion', 255);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

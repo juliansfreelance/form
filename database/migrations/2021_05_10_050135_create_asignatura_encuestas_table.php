@@ -28,6 +28,7 @@ class CreateAsignaturaEncuestasTable extends Migration
                 ->on('asignaturas')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->engine = 'InnoDB';
         });
     }
 

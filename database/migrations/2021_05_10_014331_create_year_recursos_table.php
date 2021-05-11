@@ -17,6 +17,7 @@ class CreateYearRecursosTable extends Migration
             $table->tinyIncrements('id_year_recurso');
             $table->year('year');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
