@@ -16,7 +16,13 @@ class CreateInstitucionesTable extends Migration
         Schema::create('instituciones', function (Blueprint $table) {
             $table->id('id_institucion');
 
+            $table->unsignedTinyInteger('id_localidad')->nullable();
             $table->unsignedTinyInteger('id_tipo_institucion')->nullable();
+
+            $table->foreign('id_localidad')
+                ->references('id_localidad')->on('localidades')
+                ->onDelete('set null')
+                ->onUpdate('cascade');
 
             $table->foreign('id_tipo_institucion')
                 ->references('id_tipo_institucion')->on('tipo_instituciones')

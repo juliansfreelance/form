@@ -15,14 +15,14 @@ class CreateEncuestasTable extends Migration
     {
         Schema::create('encuestas', function (Blueprint $table) {
             $table->id('id_encuesta');
-            $table->unsignedTinyInteger('id_localidad')->nullable();
-            $table->unsignedBigInteger('id_institucion')->nullable();
-            $table->unsignedBigInteger('id_docente')->nullable();
-            $table->unsignedTinyInteger('id_tipo_encuesta')->nullable();
 
-            $table->foreign('id_localidad')
-                ->references('id_localidad')
-                ->on('localidades')
+            $table->unsignedBigInteger('id_docente')->nullable();
+            $table->unsignedBigInteger('id_institucion')->nullable();
+            $table->unsignedTinyInteger('id_asignatura')->nullable();
+
+            $table->foreign('id_docente')
+                ->references('id_docente')
+                ->on('docentes')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 
@@ -32,15 +32,10 @@ class CreateEncuestasTable extends Migration
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 
-            $table->foreign('id_docente')
-                ->references('id_docente')
-                ->on('docentes')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
 
-            $table->foreign('id_tipo_encuesta')
-                ->references('id_tipo_encuesta')
-                ->on('tipo_encuestas')
+            $table->foreign('id_asignatura')
+                ->references('id_asignatura')
+                ->on('asignaturas')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 

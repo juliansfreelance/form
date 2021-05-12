@@ -17,7 +17,6 @@ class CreateEncuestaRecursosTable extends Migration
             $table->id('id_encuesta_recurso');
 
             $table->unsignedBigInteger('id_encuesta');
-            $table->unsignedTinyInteger('id_year_recurso');
             $table->unsignedTinyInteger('id_tipo_recurso');
 
             $table->foreign('id_encuesta')
@@ -26,17 +25,13 @@ class CreateEncuestaRecursosTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('id_year_recurso')
-                ->references('id_year_recurso')
-                ->on('year_recursos')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
             $table->foreign('id_tipo_recurso')
                 ->references('id_tipo_recurso')
                 ->on('tipo_recursos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->year('year');
             $table->engine = 'InnoDB';
         });
     }
