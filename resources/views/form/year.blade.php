@@ -7,9 +7,9 @@
                 
         <div class="md:col-span-1">
             <div class="px-4 sm:px-0">
-                <h3 class="text-2xl text-gray-700 border-b border-gray-200 pb-2 font-bold">2021</h3>
+                <h3 class="text-2xl text-gray-700 border-b border-gray-200 pb-2 font-bold">RECURSO {{$year}}</h3>
                 <p class="mt-1 text-sm text-gray-600">
-                    Indique el texto o el recurso empleado para el año 2021.
+                    Texto o el recurso empleado para el año {{$year}}.
                 </p>
             </div>
         </div>

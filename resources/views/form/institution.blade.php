@@ -9,7 +9,7 @@
             <div class="px-4 sm:px-0">
                 <h3 class="text-2xl text-gray-700 border-b border-gray-200 pb-2 font-bold">ASIGNATURA E INSTITUCIÓN</h3>
                 <p class="mt-1 text-sm text-gray-600">
-                    Seleccione la asignatura y la institución donde es o fue docente.
+                    Asignatura e institución donde es o fue docente.
                 </p>
             </div>
         </div>
