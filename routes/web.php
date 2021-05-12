@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class);
+Route::get('institution', [FormController::class, 'institution']);
+Route::get('years', [FormController::class, 'years']);
+Route::get('year/{year}', [FormController::class, 'year']);
+Route::get('information', [FormController::class, 'information']);
+Route::get('action/{action}', [FormController::class, 'action']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
