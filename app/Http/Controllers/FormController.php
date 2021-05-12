@@ -8,26 +8,26 @@ class FormController extends Controller
 {
     public function institution()
     {
-        return "form Institucion";
+        return view('form.institution');
     }
 
     public function years()
     {
-        return "form years";
+        return view('form.years');
     }
 
     public function year($year)
     {
-        return "form year: $year";
+        return view('form.year', compact('year'));
     }
 
     public function information()
     {
-        return "información";
+        return view('form.information');
     }
 
     public function action($action)
     {
-        return "formulario $action";
+        return view('form.action', compact('action'));
     }
 }
