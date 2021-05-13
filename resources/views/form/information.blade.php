@@ -20,12 +20,12 @@
                     <div class="col-span-6">
 
                         <div class="col-span-6 mb-4">
-                            <label from="localidad" class="block text-base font-medium text-gray-900">Género:</label>
+                            <label from="localidad" class="block text-base font-medium text-gray-900">Indique su género:</label>
                             <select id="localidad" name="localidad" class="mt-1 block w-full form-select border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                 <option value="0" disable class="text-gray-400 bg-gray-100">Seleccione un género</option>
-                                <option value="1">Jefe</option>
-                                <option value="2">Par</option>
-                                <option value="3">Subordinado</option>
+                                @foreach ($generos as $item)
+                                    <option value="{{$item->id_genero}}">{{$item->nombre_genero}}</option>
+                                @endforeach
                             </select>
                             @error('localidad')
                             <p class="text-red-500 font-light text-sm ml-4"></p>

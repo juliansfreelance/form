@@ -19,12 +19,14 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset( 'css/footer.css' ) }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     @livewireStyles
+    @yield('css')
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/validar.js') }}"></script>
 
 </head>
 <body class="antialiased h-full bg-gray-100">

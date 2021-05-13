@@ -77,7 +77,7 @@
                             </div>
                         </div>
 
-                            <div class="col-span-6 mb-4">
+                        <div class="col-span-6 mb-4">
                             <div class="flex items-start mt-2">
                                 <div class="flex items-center h-5">
                                     <input id="dieciocho" name="dieciocho" type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         
-                            <div class="col-span-6 mb-4">
+                        <div class="col-span-6 mb-4">
                             <div class="flex items-start mt-2">
                                 <div class="flex items-center h-5">
                                     <input id="diecisiete" name="diecisiete" type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
@@ -106,12 +106,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="years_error mt-2 ml-3 text-red-500 text-xs text-center hidden">*Por favor seleccione al menos un año para continuar.</div>
                         
                     </div>
                 </div>
             </div>
             <div class="flex items-center justify-end px-4 py-3 bg-gray-200 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-                <button type="button" class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue disabled:opacity-25 transition ease-in-out duration-150">
+                <button type="button" class="siguiente_btn inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue disabled:opacity-25 transition ease-in-out duration-150">
                     Siguiente
                 </button>
             </div>
@@ -123,4 +125,7 @@
             <div class="border-t border-gray-200"></div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{ asset('js/years.js') }}" defer></script>
 @endsection

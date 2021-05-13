@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,15 @@ use App\Http\Controllers\FormController;
 |
 */
 
-Route::get('/', HomeController::class);
-Route::get('institution', [FormController::class, 'institution']);
-Route::get('years', [FormController::class, 'years']);
-Route::get('year/{year}', [FormController::class, 'year']);
-Route::get('information', [FormController::class, 'information']);
-Route::get('action/{action}', [FormController::class, 'action']);
+Route::get('/', HomeController::class)->name('home');
+Route::get('institution', [FormController::class, 'institution'])->name('form.institution');
+Route::get('years', [FormController::class, 'years'])->name('form.years');
+Route::get('year/{year}', [FormController::class, 'year'])->name('form.year');
+Route::get('information', [FormController::class, 'information'])->name('form.information');
+Route::get('action/{action}', [FormController::class, 'action'])->name('form.action');
+
+Route::get('search/institutions', [SearchController::class, 'institutions'])->name('search.institutions');
+Route::get('search/textos', [SearchController::class, 'textos'])->name('search.textos');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

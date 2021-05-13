@@ -1,6 +1,10 @@
 @extends('layouts.form')
 
 @section('title', 'Año '. $year)
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+@endsection
  
 @section('content')
     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -24,11 +28,11 @@
 
                             <div class="flex items-start mt-2">
                                 <div class="flex items-center h-5">
-                                    <input id="veintiuno" name="veintiuno" type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                    <input id="notext" name="notext" type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="veintiuno" class="font-medium text-gray-700">No emplee ningún texto escolar.</label>
-                                    <p class="text-gray-500 text-xs">Seleccione solo si no empleo ningún texto escolar en el año 2021.</p>
+                                    <label for="notext" class="font-medium text-gray-700">No empleé ningún texto escolar durante 2021.</label>
+                                    <p class="text-gray-500 text-xs">Seleccione solo si no empleó ningún texto escolar en el año {{$year}}.</p>
                                 </div>
                             </div>
 
@@ -40,76 +44,84 @@
                             </div>
                         </div>
 
-                        <div class="col-span-6">
-                            <label from="nombreins" class="block text-base font-medium text-gray-900">Nombre del texto escolar:</label>
-                            <input id="nombreins" name="nombreins" type="text" class="block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
-                        </div>
-
-                        <div>
-                            <div class="pt-5 pb-4">
-                                <div class="border-b border-gray-200"></div>
+                        <section class="datatext">
+                            <div class="col-span-6">
+                                <label from="nombretexto" class="block text-base font-medium text-gray-900">Nombre del texto escolar:</label>
+                                <input id="nombretexto" name="nombretexto" type="text" class="uppercase block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
+                                <div class="nombretexto_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor indique el nombre del texto.</div>
                             </div>
-                        </div>
-
-                        <div class="col-span-6 mb-4">
-                            <label from="localidad" class="block text-base font-medium text-gray-900">Editorial:</label>
-                            <select id="localidad" name="localidad" class="mt-1 block w-full form-select border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                                <option value="0" disable class="text-gray-400 bg-gray-100">Seleccione una editorial</option>
-                                <option value="1">Jefe</option>
-                                <option value="2">Par</option>
-                                <option value="3">Subordinado</option>
-                            </select>
-                            @error('localidad')
-                            <p class="text-red-500 font-light text-sm ml-4"></p>
-                            @enderror
-                        </div>
-
-                        <div class="col-span-6">
-                            <label from="nombreins" class="block text-base font-medium text-gray-900">¿Cual?:</label>
-                            <input id="nombreins" name="nombreins" type="text" class="block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
-                        </div>
-
-                        <div>
-                            <div class="pt-5 pb-4">
-                                <div class="border-b border-gray-200"></div>
+    
+                            <div>
+                                <div class="pt-5 pb-4">
+                                    <div class="border-b border-gray-200"></div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-span-6">
-                            <label from="nombreins" class="block text-base font-medium text-gray-900">Año de edición <span class="text-gray-400 text-xs">(YYYY)</span></label>
-                            <input id="nombreins" name="nombreins" type="number" class="block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
-                        </div>
-
-                        <div>
-                            <div class="pt-5 pb-4">
-                                <div class="border-b border-gray-200"></div>
+    
+                            <div class="col-span-6 mb-4">
+                                <label from="editorial" class="block text-base font-medium text-gray-900">Editorial:</label>
+                                <select id="editorial" name="editorial" class="mt-1 block w-full form-select border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                    <option value="0" disable class="text-gray-400 bg-gray-100">Seleccione una editorial</option>
+                                     @foreach ($editoriales as $item)
+                                        <option value="{{$item->id_editorial}}">{{$item->nombre_editorial}}</option>
+                                    @endforeach
+                                    <option value="otra">Otra</option>
+                                </select>
+                                <div class="editorial_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor seleccione la editorial del texto.</div>
                             </div>
-                        </div>
+    
+                            <div class="col-span-6 otraeditorial">
+                                <label from="neweditorial" class="block text-base font-medium text-gray-900">¿Cuál Editorial?</label>
+                                <input id="neweditorial" name="neweditorial" type="text" class="capitalize block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
+                                <div class="neweditorial_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor indique el nombre del la editorial del texto.</div>
+                            </div>
+    
+                            <div>
+                                <div class="pt-5 pb-4">
+                                    <div class="border-b border-gray-200"></div>
+                                </div>
+                            </div>
+    
+                            <div class="col-span-6">
+                                <label from="edicion" class="block text-base font-medium text-gray-900">Año de edición <span class="text-gray-400 text-xs">(YYYY)</span></label>
+                                <input id="edicion" name="edicion" type="text" maxlength="4" class="block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
+                                <div class="edicion_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor indique un año de edición correcto.</div>
+                            </div>
+    
+                            <div>
+                                <div class="pt-5 pb-4">
+                                    <div class="border-b border-gray-200"></div>
+                                </div>
+                            </div>
+                        </section>
 
-                        <div class="col-span-6 mb-4">
-                            <label from="localidad" class="block text-base font-medium text-gray-900">Recurso frecuente más empleado:</label>
-                            <select id="localidad" name="localidad" class="mt-1 block w-full form-select border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                                <option value="0" disable class="text-gray-400 bg-gray-100">Seleccione un recurso</option>
-                                <option value="1">Jefe</option>
-                                <option value="2">Par</option>
-                                <option value="3">Subordinado</option>
-                            </select>
-                            @error('localidad')
-                            <p class="text-red-500 font-light text-sm ml-4"></p>
-                            @enderror
-                        </div>
-
-                        <div class="col-span-6">
-                            <label from="nombreins" class="block text-base font-medium text-gray-900">¿Cual?:</label>
-                            <input id="nombreins" name="nombreins" type="text" class="block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
-                        </div>
+                        <section class="recurso">
+                            <div class="col-span-6 mb-4">
+                                <label from="recurso" class="block text-base font-medium text-gray-900">Recurso frecuente más empleado:</label>
+                                <select id="recurso" name="recurso" class="mt-1 block w-full form-select border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                    <option value="0" disable class="text-gray-400 bg-gray-100">Seleccione un recurso</option>
+                                    @foreach ($recursos as $item)
+                                        @if ($item->nombre_tipo_recurso !== 'Textos escolares')
+                                            <option value="{{$item->id_tipo_recurso}}">{{$item->nombre_tipo_recurso}}</option>
+                                        @endif
+                                    @endforeach
+                                    <option value="otra">Otro</option>
+                                </select>
+                                <div class="recurso_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor seleccione el recurso empleado.</div>
+                            </div>
+    
+                            <div class="col-span-6 otrorecurso">
+                                <label from="newrecurso" class="block text-base font-medium text-gray-900">¿Cuál Recurso?:</label>
+                                <input id="newrecurso" name="newrecurso" type="text" class="block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
+                                <div class="newrecurso_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor indique el recurso empleado.</div>
+                            </div>
+                        </section>
                         
                     </div>
                 </div>
             </div>
             <div class="flex items-center justify-end px-4 py-3 bg-gray-200 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-                <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue disabled:opacity-25 transition ease-in-out duration-150">
-                    Enviar
+                <button type="submit" class="siguiente_btn inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue disabled:opacity-25 transition ease-in-out duration-150">
+                    Siguiente
                 </button>
             </div>
         </div>
@@ -120,4 +132,25 @@
             <div class="border-t border-gray-200"></div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/year.js') }}" defer></script>
+    <script>
+        $('#nombretexto').autocomplete({
+            source: function( request, response ) {
+                $.ajax({
+                    url: "{{route('search.textos')}}",
+                    dataType: 'json',
+                    data: {
+                        term: request.term
+                    },
+                    success: function(data) {
+                        response(data)
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

@@ -18,8 +18,8 @@
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 alert-interaccion">
                         <div class="bg-blue-100 text-blue-500 border-blue-300 border-t-4 p-4 rounded-md shadow">
-                            <p class="title font-bold">Cuestionario Identificación Muestra de Textos Escolares</p>
-                            <p class="descripcion italic font-medium"><span class="not-italic font-normal">Instrumento de identificación de los textos escolares de Ciencias Sociales / Ciencias Naturales frecuentemente empleados como apoyo al quehacer pedagógico de los docentes bogotanos de grado noveno durante los años 2017 a 2021.</span></p>
+                            {{-- <p class="title font-bold">Cuestionario Identificación Muestra de Textos Escolares</p> --}}
+                            <p class="title font-bold">Instrumento de identificación de los textos escolares de Ciencias Sociales / Ciencias Naturales frecuentemente empleados como apoyo al quehacer pedagógico de los docentes bogotanos de grado noveno durante los años 2017 a 2021.</p>
                         </div>
                     </div>
                     <div class="col-span-6">
@@ -37,12 +37,16 @@
                 </div>
             </div>
             <div class="flex items-center justify-end px-4 py-3 bg-gray-200 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-                <button type="button" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-red-400 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-red disabled:opacity-25 transition ease-in-out duration-150 mr-4">
-                    CANCELAR
-                </button>
-                <button type="button" class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue disabled:opacity-25 transition ease-in-out duration-150">
-                    CONTINUAR
-                </button>
+                <a href="{{ route( 'form.action', 'cancel' ) }}">
+                    <button type="button" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-red-400 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-red disabled:opacity-25 transition ease-in-out duration-150 mr-4">
+                        CANCELAR
+                    </button>
+                </a>
+                <a href="{{ route( 'form.institution' ) }}">
+                    <button type="button" class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue disabled:opacity-25 transition ease-in-out duration-150">
+                        CONTINUAR
+                    </button>
+                </a>
             </div>
         </div>
     </div>
