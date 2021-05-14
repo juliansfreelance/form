@@ -7,21 +7,38 @@
 @endsection
 
 @section('content')
-    <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:grid md:grid-cols-12 md:gap-6">
                     
         <div class="md:col-span-1">
-            <div class="px-4 sm:px-0">
+            {{-- <div class="px-4 sm:px-0">
                 <h3 class="text-2xl text-gray-700 border-b border-gray-200 pb-2 font-bold">ASIGNATURA E INSTITUCIÓN</h3>
                 <p class="mt-1 text-sm text-gray-600">
                     Asignatura e institución donde es o fue docente.
                 </p>
-            </div>
+            </div> --}}
         </div>
     
-        <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="mt-5 md:mt-0 md:col-span-10">
             <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-t-md">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6"> 
+
+                        <div class="col-span-6 mb-4">
+                            <label from="genero" class="block text-base font-medium text-gray-900">Indique su género:</label>
+                            <select id="genero" name="genero" class="mt-1 block w-full form-select border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                <option value="0" disable class="text-gray-400 bg-gray-100">Seleccione un género</option>
+                                @foreach ($generos as $item)
+                                    <option value="{{$item->id_genero}}">{{$item->nombre_genero}}</option>
+                                @endforeach
+                            </select>
+                            <div class="genero_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor seleccione su género.</div>
+                        </div>
+
+                        <div>
+                            <div class="pt-1 pb-4">
+                                <div class="border-b border-gray-200"></div>
+                            </div>
+                        </div>
 
                         <div class="col-span-6 mb-4">
                             <legend class="text-base font-medium text-gray-900">Usted es docente de:</legend>

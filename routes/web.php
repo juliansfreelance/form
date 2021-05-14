@@ -24,7 +24,11 @@ Route::get('information', [FormController::class, 'information'])->name('form.in
 Route::get('action/{action}', [FormController::class, 'action'])->name('form.action');
 
 Route::get('search/institutions', [SearchController::class, 'institutions'])->name('search.institutions');
+Route::get('search/asignaturas', [SearchController::class, 'asignaturas'])->name('search.asignaturas');
 Route::get('search/textos', [SearchController::class, 'textos'])->name('search.textos');
+Route::get('search/recursos', [SearchController::class, 'recursos'])->name('search.recursos');
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

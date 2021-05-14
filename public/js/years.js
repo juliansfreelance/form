@@ -1,10 +1,11 @@
 let years = new Array();
 $(document).ready(function() {
     $('body').scrollTop(0);
-    
+
     $('input[type="checkbox"]').on('click', function(){
         $('.years_error').addClass('hidden');
     });
+
     $('.siguiente_btn').on('click', function() {
         $('.siguiente_btn').addClass('hidden');
         let years = [];

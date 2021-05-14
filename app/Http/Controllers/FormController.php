@@ -13,9 +13,10 @@ class FormController extends Controller
 {
     public function institution()
     {
+        $generos = Genero::all();
         $tipoInsti = Tipo_institucione::all();
         $localidades = Localidade::all();
-        return view('form.institution', compact('tipoInsti', 'localidades'));
+        return view('form.institution', compact('generos', 'tipoInsti', 'localidades'));
     }
 
     public function years()
@@ -32,8 +33,7 @@ class FormController extends Controller
 
     public function information()
     {
-        $generos = Genero::all();
-        return view('form.information', compact('generos'));
+        return view('form.information');
     }
 
     public function action($action)

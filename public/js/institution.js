@@ -10,7 +10,9 @@ $(document).ready(function()
         allowNumeric: false,
         allow: '()'
     });
-
+    $('select[name="genero"]').on('change', function() {
+        $('.genero_error').addClass('hidden');
+    });
     $('input:radio[name="asignatura"]').on('change', function() {
         asignatura = $(this).val();
         $('.asignatura_error').addClass('hidden');
@@ -35,17 +37,23 @@ $(document).ready(function()
         
         $('.siguiente_btn').addClass('hidden');
 
+        localStorage.removeItem('Género');
         localStorage.removeItem('Asignatura');
         localStorage.removeItem('Tipo_institucion');
         localStorage.removeItem('Localidad');
         localStorage.removeItem('Nombre_institucion');
 
+        genero = $('select[name="genero"]').val();
         asignatura_ratio = $('input:radio[name="asignatura"]');
         tipoinstitucion = $('select[name="tipoins"]').val();
         localidad = $('select[name="localidad"]').val();
         nombreinstitucion = $('input:text[name="nombreins"]').val();
         nombreinstitucion = nombreinstitucion.toUpperCase();
 
+        if(genero == 0) {
+            $('.genero_error').removeClass('hidden');
+            $('.siguiente_btn').removeClass('hidden');
+        }
         if( !(asignatura_ratio[0].checked || asignatura_ratio[1].checked) ) {
             $('.asignatura_error').removeClass('hidden');
             $('.siguiente_btn').removeClass('hidden');
@@ -72,7 +80,11 @@ $(document).ready(function()
             $('.siguiente_btn').removeClass('hidden');
         }
 
-        if( !(asignatura_ratio[0].checked || asignatura_ratio[1].checked) ) {
+        if(genero == 0) {
+            $('.genero_error').removeClass('hidden');
+            $('.siguiente_btn').removeClass('hidden');
+        }
+        else if( !(asignatura_ratio[0].checked || asignatura_ratio[1].checked) ) {
             $('.asignatura_error').removeClass('hidden');
             $('.siguiente_btn').removeClass('hidden');
         }
@@ -95,6 +107,7 @@ $(document).ready(function()
             $('.siguiente_btn').removeClass('hidden');
         }
         else {
+            localStorage.setItem('Género', genero);
             localStorage.setItem('Asignatura', asignatura);
             localStorage.setItem('Tipo_institucion', tipoinstitucion);
             localStorage.setItem('Localidad', localidad);
