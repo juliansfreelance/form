@@ -15,7 +15,7 @@ class CreateTipoInstitucionesTable extends Migration
     {
         Schema::create('tipo_instituciones', function (Blueprint $table) {
             $table->tinyIncrements('id_tipo_institucion');
-            $table->string('nombre_tipo_institucion', 25);
+            $table->string('nombre_tipo_institucion', 100);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

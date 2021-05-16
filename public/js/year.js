@@ -12,7 +12,7 @@ var datayear = [];
 var redirecTo;
 
 String.prototype.capitalize = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1)
+    return this.replace(/(^|\s)\S/g, l => l.toUpperCase());
 }
 
 $(document).ready(function() {

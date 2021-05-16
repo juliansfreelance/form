@@ -26,7 +26,7 @@
                         <section class="datatext">
 
                             <div class="col-span-6">
-                                <legend class="text-base font-medium text-gray-900 mb-4">Indique el nombre del texto con el que ha orientado la asignatura para el año <b>{{$year}}.</b></legend>
+                                <legend class="text-base font-medium text-gray-900 mb-4">Indique el nombre del texto empleado con mayor frecuencia en el año <b>{{$year}}.</b></legend>
                                 <label from="nombretexto" class="block text-base font-medium text-gray-900">Nombre del texto escolar:</label>
                                 <input id="nombretexto" name="nombretexto" type="text" class="uppercase block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
                                 <div class="nombretexto_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor indique el nombre del texto.</div>
@@ -93,11 +93,9 @@
                                     <div class="border-b border-gray-200"></div>
                                 </div>
                             </div>
-            
     
                             <div class="col-span-6">
-                                <legend class="text-base font-medium text-gray-900 mb-4">Indique el nombre del recurso más frecuente con el que ha orientado la asignatura.</legend>
-                                <label from="recurso" class="block text-base font-medium text-gray-900">Recurso frecuente más empleado:</label>
+                                <label from="recurso" class="block text-base font-medium text-gray-900">Indique el nombre del recurso(s) educativo empleado(s) con mayor frecuencia</label>
                                 <input id="recurso" name="recurso" type="text" class="capitalize block w-full mt-1 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm" value="">
                                 <div class="recurso_error mt-2 ml-3 text-red-500 text-xs hidden">*Por favor indique el recurso empleado.</div>
                             </div>

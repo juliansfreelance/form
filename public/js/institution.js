@@ -28,9 +28,21 @@ $(document).ready(function()
         $('.localidad_error').addClass('hidden');
     });
 
-    $('input:text[name="nombreins"]').on('change', function() {
+    $('input:text[name="nombreins"]').keyup(function() {
         nombreinstitucion = $(this).val();
-        $('.nombreins_error').addClass('hidden');
+        if (nombreinstitucion === '') {
+            $('.nombreins_error').html('*Por favor indique el nombre de la institución.');
+            $('.nombreins_error').removeClass('hidden');
+            $('.enviar_btn').show();
+        }
+        else if (nombreinstitucion.length < 3) {
+            $('.nombreins_error').html('*Nombre de la institución demasiado corto.');
+            $('.nombreins_error').removeClass('hidden');
+            $('.enviar_btn').show();
+        }
+        else {
+            $('.nombreins_error').addClass('hidden');
+        }
     });
 
     $('.siguiente_btn').on('click', function() {
@@ -101,7 +113,7 @@ $(document).ready(function()
             $('.nombreins_error').removeClass('hidden');
             $('.siguiente_btn').removeClass('hidden');
         }
-        else if(nombreinstitucion.length <= 8) {
+        else if(nombreinstitucion.length <= 3) {
             $('.nombreins_error').html('*Nombre de la institución demasiado corto.');
             $('.nombreins_error').removeClass('hidden');
             $('.siguiente_btn').removeClass('hidden');

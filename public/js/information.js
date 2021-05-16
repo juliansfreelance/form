@@ -12,16 +12,35 @@ var correo;
 var telefono;
 
 String.prototype.capitalize = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1)
+    return this.replace(/(^|\s)\S/g, l => l.toUpperCase());
 }
 
 $(document).ready(function() {
 
     $('body').scrollTop(0);
-    $('.habeas, .contactoform').hide();
     $('input:text[name="nombre"], input:text[name="apellido"]').alpha();
     $('input:text[name="correo"]').alphanum({allow: ('_@.#+-'), allowSpace: false})
 	$('input:text[name="telefono"]').numeric("positiveInteger");
+
+    $('.habeas, .contactoform').hide();
+
+    dispocision = $('input:radio[name="dispocision"]');
+    contacto = $('input:radio[name="contacto"]');
+    
+    if(dispocision[0].checked){
+        $('.habeas').show();
+    }
+    if(dispocision[1].checked) {
+        $('.habeas').hide();
+    }
+    if(contacto[0].checked){
+        $('.contactoform').show();
+    }
+    if(contacto[1].checked) {
+        $('.contactoform').hide();
+    }
+
+
 
     $('input:radio[name="asignatura"]').on('change', function() {
         asignatura = $(this).val();

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Encuesta_recurso extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_encuesta_recurso';
 }

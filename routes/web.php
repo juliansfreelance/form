@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\EncuestaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,7 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', HomeController::class)->name('home');
+
 Route::get('institution', [FormController::class, 'institution'])->name('form.institution');
 Route::get('years', [FormController::class, 'years'])->name('form.years');
 Route::get('year/{year}', [FormController::class, 'year'])->name('form.year');
@@ -28,7 +31,7 @@ Route::get('search/asignaturas', [SearchController::class, 'asignaturas'])->name
 Route::get('search/textos', [SearchController::class, 'textos'])->name('search.textos');
 Route::get('search/recursos', [SearchController::class, 'recursos'])->name('search.recursos');
 
-
+Route::post('encuesta', [EncuestaController::class, 'store'])->name('encuesta.store');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
