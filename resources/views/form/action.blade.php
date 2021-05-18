@@ -58,7 +58,7 @@
                     
                     <div class="col-span-6">
                         <div class="text-gray-500 text-justify">
-                            <p class="descripcion">En caso de inquietudes, por favor comuníquese a:</p>
+                            <p class="descripcion">En caso de inquietudes e inconvenientes por favor comuníquese a:</p>
                             <a href="mailto:freddy.castro@correo.ugr.es?subject=Soporte%20formulario%20identificación%20muestra%20de%20textos%20escolares" target="_blank">
                                 <div class="mt-0 flex items-center text-sm font-semibold ">
                                     <div class="text-blue-700">freddycastro@correo.ugr.es</div>
@@ -89,155 +89,16 @@
     </div>
 @endsection
 @section('js')
+    <script src="{{ asset('js/guardar.js') }}" defer></script>
     <script>
-        String.prototype.capitalize = function() {
-            return this.replace(/(^|\s)\S/g, l => l.toUpperCase());
-        }
-
-        var pathname = window.location.pathname;
-        pathname = pathname.split("/");
-        var route = pathname[2];
-
-        if(route == 'saved') {
-            $('.home_btn').hide();
-        } else if(route == 'cancel') {
-            $('.home_btn').show();
-        }
         
-        var envio;
 
-        var dataDoc;
-        var dataIns;
 
-        var id_docente;
-        var id_institucion;
-        var id_encuesta;
         
-        var year1;
-        var year2;
-        var year3;
-        var year4;
-        var year5;
 
-        docente();
+       
 
-        //docente
-        function docente() {
-            if(localStorage.getItem('Nombre') != undefined) {
-                dataDoc = {
-                    tipo: 'docente',
-                    _token: $('input[name="_token"]').val(),
-                    nombre: localStorage.getItem('Nombre').capitalize(),
-                    apellido: localStorage.getItem('Apellido').capitalize(),
-                    correo: localStorage.getItem('Correo'),
-                    telefono: localStorage.getItem('Telefono'),
-                    id_genero: localStorage.getItem('Género')
-                }
-            }
-            else if(localStorage.getItem('Género') != undefined){
-                dataDoc = {
-                    tipo: 'docente',
-                    _token: $('input[name="_token"]').val(),
-                    id_genero: localStorage.getItem('Género')
-                }
-            }
-            else {
-                $(".alert_error .title").html('Error');
-                $(".alert_error .descripcion span").html('No se encontraron datos de la encuesta.<br>No sabemos como llego hasta aquí.');
-                $(".alert_error, .home_btn").show();
-            }
-            if(localStorage.getItem('Nombre') != undefined || localStorage.getItem('Género') != undefined) {
-                envio = 'docente';
-                insert(envio, dataDoc);
-                institucion();
-            }
-        }
-
-        //institucion
-        function institucion() {
-            if(localStorage.getItem('Nombre_institucion') != undefined) {
-                dataIns = {
-                    tipo: 'institucion',
-                    _token: $('input[name="_token"]').val(),
-                    id_localidad: localStorage.getItem('Localidad'),
-                    id_tipo_institucion: localStorage.getItem('Tipo_institucion'),
-                    nombre_institucion: localStorage.getItem('Nombre_institucion').capitalize(),
-                }
-            }
-            else {
-                $(".alert_error .title").html('Error');
-                $(".alert_error .descripcion span").html('No se encontraron datos de la encuesta.<br>No sabemos como llego hasta aquí.');
-                $(".alert_error, .home_btn").show();
-            }
-            if(localStorage.getItem('Nombre_institucion') != undefined) {
-                envio = 'institucion';
-                insert(envio, dataIns);
-                encuesta();
-            }
-            
-        }
-
-        //encuesta
-        function encuesta() {
-            if (localStorage.getItem('Asignatura') != undefined) {
-                dataEncuesta = {
-                    tipo: 'encuesta',
-                    _token: $('input[name="_token"]').val(),
-                    id_docente: id_docente,
-                    id_institucion: id_institucion,
-                    id_asignatura: localStorage.getItem('Asignatura'),
-                }
-            }
-            else {
-                $(".alert_error .title").html('Error');
-                $(".alert_error .descripcion span").html('No se encontraron datos de la encuesta.<br>No sabemos como llego hasta aquí.');
-                $(".alert_error, .home_btn").show();
-            }
-            if(localStorage.getItem('Asignatura') != undefined) {
-                envio = 'encuesta';
-                insert(envio, dataEncuesta);
-                yearuno();
-            }
-        }
-
-        //2021
-        function yearuno() {
-            if(localStorage.getItem('Year_2021') != undefined) {
-                var year_2021 = localStorage.getItem('Year_2021');
-                year_2021 = year_2021.split(',');
-                if(year_2021[0] == 'texto') {
-                    if(year_2021[2] == 'old') {
-                        data2021 = {
-                            tipo: 'year1old',
-                            _token: $('input[name="_token"]').val(),
-                            texto_nombre: year_2021[1],
-                            id_editorial: year_2021[3],
-                            year_edicion: year_2021[4],
-                        }
-                    }
-                    else {
-                        data2021 = {
-                            tipo: 'year1new',
-                            _token: $('input[name="_token"]').val(),
-                            texto_nombre: year_2021[1],
-                            nombre_editorial: year_2021[3],
-                            year_edicion: year_2021[4],
-                        }
-                    }
-                }
-                else {
-                    data2021 = {
-                        tipo: 'year1recurso',
-                        _token: $('input[name="_token"]').val(),
-                        recurso_nombre: year_2021[1],
-                    }
-                }
-                envio = 'year1';
-                insert(envio, data2021);
-                //yeardos();
-            }
-            
-        }
+        
 
         //2020
         function yeardos() {
@@ -418,34 +279,56 @@
                    else if (tipo == 'year5') {
                         $('.alert_saved .descripcion span').html('Guardando información de recurso 2017...');
                    }
+                   
                 }, success: function(response) {
                     $(".alert_saved").hide();
                    if(tipo == 'docente') {
                         console.log(response);
-                        id_docente = JSON.stringify(response.id_docente);
+                        localStorage.setItem('id_docente',JSON.stringify(response.id_docente));
+                        institucion();
                    }
                    else if (tipo == 'institucion'){
                         console.log(response);
-                        id_institucion = JSON.stringify(response.id_institucion);
+                        localStorage.setItem('id_institucion', JSON.stringify(response.id_institucion));
+                        encuesta();
                    }
                    else if (tipo == 'encuesta') {
                         console.log(response);
-                        id_encuesta = JSON.stringify(response.id_institucion);
+                        localStorage.setItem('id_encuesta', JSON.stringify(response.id_encuesta));
+                        yearuno();
                    }
                    else if (tipo == 'year1') {
                         console.log(response);
-                        year1 = JSON.stringify(response.id_institucion);
+                        yeardos();yeartres
+                   }
+                   else if (tipo == 'year2') {
+                        console.log(response);
+                        yeartres();
+                   }
+                   else if (tipo == 'year3') {
+                        console.log(response);
+                        yearcuatro();
+                   }
+                   else if (tipo == 'year4') {
+                        console.log(response);
+                        yearcinco();
+                   }
+                   else if (tipo == 'year5') {
+                        console.log(response);
+                        $(".alert_saved").hide();
+                        $(".alert_exito").removeClass('hidden');
+                        localStorage.clear();
                    }
                 }, error: function(response, error, objError) {
                     $(".alert_saved").hide();
                     if(navigator.onLine == true) {
                         $(".alert_error .title").html('Error');
-                        $(".alert_error .descripcion span").html('Algo salio mal intente de nuevo, no se a podido guardar la evaluación de ');
+                        $(".alert_error .descripcion span").html('Algo salio mal intente de nuevo, no se a podido guardar la encuesta.');
                         $(".alert_error").show();
                     }
                     else {
                         $(".alert_error .title").html('Error');
-                        $(".alert_error .descripcion span").html('Verifica tu conexion a internet, no se a podido guardar la evaluación de ');
+                        $(".alert_error .descripcion span").html('Verifica tu conexion a internet, no se a podido guardar la encuesta.');
                         $(".alert_error").show();
                     }
                 }
@@ -453,32 +336,32 @@
                 $(".alert_saved").hide();
                 if (jqXHR.status === 0) {
                     $(".alert_error .title").html('Error Status');
-                    $(".alert_error .descripcion span").html('Verifica tu conexion a internet, no se a podido guardar la evaluación de ');
+                    $(".alert_error .descripcion span").html('Verifica tu conexion a internet, no se a podido guardar la encuesta.');
                     $(".alert_error").show();
                 } 
                 else if (jqXHR.status == 404) {
                     $(".alert_error .title").html('Error Status');
-                    $(".alert_error .descripcion span").html('Página solicitada no encontrada [400], no se a podido guardar la evaluación de ');
+                    $(".alert_error .descripcion span").html('Página solicitada no encontrada [400], no se a podido guardar la encuesta.');
                     $(".alert_error").show();
                 } 
                 else if (jqXHR.status == 500) {
                     $(".alert_error .title").html('Error Status');
-                    $(".alert_error .descripcion span").html('Error interno del servidor [500], no se a podido guardar la evaluación de ');
+                    $(".alert_error .descripcion span").html('Error interno del servidor [500], no se a podido guardar la encuesta.');
                     $(".alert_error").show();
                 } 
                 else if (textStatus === 'parsererror') {
                     $(".alert_error .title").html('Error Status');
-                    $(".alert_error .descripcion span").html('Error al analizar el archivo solicitado, no se a podido guardar la evaluación de ');
+                    $(".alert_error .descripcion span").html('Error al analizar el archivo solicitado, no se a podido guardar la encuesta.');
                     $(".alert_error").show();
                 } 
                 else if (textStatus === 'timeout') {
                     $(".alert_error .title").html('Error Status');
-                    $(".alert_error .descripcion span").html('Tiempo de espera exedido, no se a podido guardar la evaluación de ');
+                    $(".alert_error .descripcion span").html('Tiempo de espera exedido, no se a podido guardar la encuesta.');
                     $(".alert_error").show();
                 } 
                 else if (textStatus === 'abort') {
                     $(".alert_error .title").html('Abort');
-                    $(".alert_error .descripcion span").html('Petición Abortada, no se a podido guardar la evaluación de ');
+                    $(".alert_error .descripcion span").html('Petición Abortada, no se a podido guardar la encuesta.');
                     $(".alert_error").show();
                 } 
                 else {
